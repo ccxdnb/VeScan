@@ -11,7 +11,7 @@ import SwiftUI
 struct VeScanApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainScanView()
         }
     }
 }

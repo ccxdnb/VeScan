@@ -1,5 +1,5 @@
 //
-//  ScanView.swift
+//  ScanViewWrapper.swift
 //  VeScan
 //
 //  Created by Joaquin Wilson on 18-06-24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import VisionKit
 
-struct ScanView: UIViewControllerRepresentable {
+struct ScanViewWrapper: UIViewControllerRepresentable {
     @ObservedObject var scanProvider: ScanProvider
 
     func makeUIViewController(context: Context) -> DataScannerViewController {

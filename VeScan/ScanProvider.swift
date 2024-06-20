@@ -6,46 +6,90 @@
 //
 
 import VisionKit
-
-enum ScanResult: String {
-    case vegan
-    case nonVegan
-    case dunno
-}
+import NaturalLanguage
 
 final class ScanProvider: NSObject, DataScannerViewControllerDelegate, ObservableObject {
+    enum ScanResult: String {
+        case vegan
+        case nonVegan
+        case dunno
+
+        func iconName () -> String {
+            switch self {
+            case .vegan:
+                return "heart.fill"
+            case .nonVegan:
+                return "exclamationmark.circle"
+            case .dunno:
+                return " "
+            }
+        }
+
+        func description () -> String {
+            switch self {
+            case .vegan:
+                return "Vegan!"
+            case .nonVegan:
+                return "Not Vegan"
+            case .dunno:
+                return " "
+            }
+        }
+    }
 
     @Published var scanResult: ScanResult = .dunno
     @Published var error: DataScannerViewController.ScanningUnavailable?
 
-    func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
-        let nonVegan = getIngredients()
-
-        switch item {
+    func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
+        switch allItems.first {
         case .text(let text):
-            let textSplit = text.transcript.split(separator: " ", omittingEmptySubsequences: true)
-
-            for ingredient in textSplit {
-                if nonVegan.contains(String(ingredient).lowercased()) {
-                    scanResult = .nonVegan
-                    break
-                } else {
-                    scanResult = .vegan
-                }
-            }
-
+            let detectedLanguage = detectedLanguage(for: text.transcript)
+            self.scanResult = analyzeIngredientsIn(text.transcript, with: detectedLanguage)
         default:
-            fatalError()
+            break
+        }
+    }
+
+    func analyzeIngredientsIn(_ text: String, with language: NLLanguage?) -> ScanResult {
+        let nonVegan = getIngredients(language: language ?? .english)
+        for ingredient in text.split(separator: " ", omittingEmptySubsequences: true) {
+            if nonVegan.contains(String(ingredient).lowercased()) {
+                return .nonVegan
+            } else {
+                return .vegan
+            }
         }
 
+        return .dunno
     }
 
-    func dataScanner(_ dataScanner: DataScannerViewController, becameUnavailableWithError error: DataScannerViewController.ScanningUnavailable) {
-
+    func dataScanner(_ dataScanner: DataScannerViewController, didRemove removedItems: [RecognizedItem], allItems: [RecognizedItem]) {
+        self.scanResult = .dunno
     }
 
-    func getIngredients() -> Set<String> {
-        if let path = Bundle.main.path(forResource: "nonvegan", ofType: "json") {
+    func detectedLanguage(for string: String) -> NLLanguage? {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(string)
+        return recognizer.dominantLanguage
+    }
+
+
+    //TODO: Replace for Firebase Remote to control ingredients list without releasing app versions
+    func getIngredients(language: NLLanguage) -> Set<String> {
+        var fileName: String = ""
+
+        switch language {
+        case .english:
+            fileName = "non-vegan-en"
+        case .danish:
+            fileName = "non-vegan-da"
+        case .spanish:
+            fileName = "non-vegan-es"
+        default:
+            break
+        }
+
+        if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             do {
                   let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                   let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)

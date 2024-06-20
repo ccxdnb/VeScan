@@ -8,16 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1E80EA282C21B3EA00261AEC /* VeScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA272C21B3E900261AEC /* VeScanApp.swift */; };
-		1E80EA2A2C21B3EA00261AEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA292C21B3EA00261AEC /* ContentView.swift */; };
+		1E80EA2A2C21B3EA00261AEC /* MainScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA292C21B3EA00261AEC /* MainScanView.swift */; };
 		1E80EA2C2C21B3EB00261AEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E80EA2B2C21B3EB00261AEC /* Assets.xcassets */; };
 		1E80EA2F2C21B3EB00261AEC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E80EA2E2C21B3EB00261AEC /* Preview Assets.xcassets */; };
 		1E80EA392C21B3EC00261AEC /* VeScanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA382C21B3EC00261AEC /* VeScanTests.swift */; };
 		1E80EA432C21B3EC00261AEC /* VeScanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA422C21B3EC00261AEC /* VeScanUITests.swift */; };
 		1E80EA452C21B3EC00261AEC /* VeScanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA442C21B3EC00261AEC /* VeScanUITestsLaunchTests.swift */; };
-		1E80EA522C21C52900261AEC /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA512C21C52900261AEC /* ScanView.swift */; };
+		1E80EA522C21C52900261AEC /* ScanViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA512C21C52900261AEC /* ScanViewWrapper.swift */; };
 		1E80EA542C21C54500261AEC /* ScanProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E80EA532C21C54500261AEC /* ScanProvider.swift */; };
-		1E97A8202C21FAEF00C3867A /* nonvegan.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E97A81E2C21FAEF00C3867A /* nonvegan.json */; };
-		1E97A8212C21FAEF00C3867A /* canbevegan.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E97A81F2C21FAEF00C3867A /* canbevegan.json */; };
+		1E8C983A2C232E2C00CEFDB6 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C98392C232E2C00CEFDB6 /* Array+Utils.swift */; };
+		1E8C983C2C232FCE00CEFDB6 /* ScanResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C983B2C232FCE00CEFDB6 /* ScanResultView.swift */; };
+		1E8C983E2C233DF700CEFDB6 /* non-vegan-da.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C983D2C233DF700CEFDB6 /* non-vegan-da.json */; };
+		1E8C98402C23446700CEFDB6 /* non-vegan-es.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E8C983F2C23446700CEFDB6 /* non-vegan-es.json */; };
+		1E97A8202C21FAEF00C3867A /* non-vegan-en.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E97A81E2C21FAEF00C3867A /* non-vegan-en.json */; };
+		1E97A8212C21FAEF00C3867A /* can-be-vegan-en.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E97A81F2C21FAEF00C3867A /* can-be-vegan-en.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +44,7 @@
 /* Begin PBXFileReference section */
 		1E80EA242C21B3E900261AEC /* VeScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E80EA272C21B3E900261AEC /* VeScanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeScanApp.swift; sourceTree = "<group>"; };
-		1E80EA292C21B3EA00261AEC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1E80EA292C21B3EA00261AEC /* MainScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanView.swift; sourceTree = "<group>"; };
 		1E80EA2B2C21B3EB00261AEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E80EA2E2C21B3EB00261AEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1E80EA342C21B3EC00261AEC /* VeScanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VeScanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,10 +52,14 @@
 		1E80EA3E2C21B3EC00261AEC /* VeScanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VeScanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E80EA422C21B3EC00261AEC /* VeScanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeScanUITests.swift; sourceTree = "<group>"; };
 		1E80EA442C21B3EC00261AEC /* VeScanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeScanUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1E80EA512C21C52900261AEC /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		1E80EA512C21C52900261AEC /* ScanViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewWrapper.swift; sourceTree = "<group>"; };
 		1E80EA532C21C54500261AEC /* ScanProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanProvider.swift; sourceTree = "<group>"; };
-		1E97A81E2C21FAEF00C3867A /* nonvegan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nonvegan.json; sourceTree = "<group>"; };
-		1E97A81F2C21FAEF00C3867A /* canbevegan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = canbevegan.json; sourceTree = "<group>"; };
+		1E8C98392C232E2C00CEFDB6 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		1E8C983B2C232FCE00CEFDB6 /* ScanResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultView.swift; sourceTree = "<group>"; };
+		1E8C983D2C233DF700CEFDB6 /* non-vegan-da.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "non-vegan-da.json"; sourceTree = "<group>"; };
+		1E8C983F2C23446700CEFDB6 /* non-vegan-es.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "non-vegan-es.json"; sourceTree = "<group>"; };
+		1E97A81E2C21FAEF00C3867A /* non-vegan-en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "non-vegan-en.json"; sourceTree = "<group>"; };
+		1E97A81F2C21FAEF00C3867A /* can-be-vegan-en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "can-be-vegan-en.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +111,11 @@
 			isa = PBXGroup;
 			children = (
 				1E80EA272C21B3E900261AEC /* VeScanApp.swift */,
-				1E80EA292C21B3EA00261AEC /* ContentView.swift */,
-				1E80EA512C21C52900261AEC /* ScanView.swift */,
+				1E80EA292C21B3EA00261AEC /* MainScanView.swift */,
+				1E8C983B2C232FCE00CEFDB6 /* ScanResultView.swift */,
+				1E80EA512C21C52900261AEC /* ScanViewWrapper.swift */,
 				1E80EA532C21C54500261AEC /* ScanProvider.swift */,
+				1E8C98392C232E2C00CEFDB6 /* Array+Utils.swift */,
 				1EE301C22C2206AC0082A3A4 /* Resources */,
 				1E80EA2B2C21B3EB00261AEC /* Assets.xcassets */,
 				1E80EA2D2C21B3EB00261AEC /* Preview Content */,
@@ -141,8 +151,10 @@
 		1EE301C22C2206AC0082A3A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1E97A81E2C21FAEF00C3867A /* nonvegan.json */,
-				1E97A81F2C21FAEF00C3867A /* canbevegan.json */,
+				1E97A81E2C21FAEF00C3867A /* non-vegan-en.json */,
+				1E8C983D2C233DF700CEFDB6 /* non-vegan-da.json */,
+				1E8C983F2C23446700CEFDB6 /* non-vegan-es.json */,
+				1E97A81F2C21FAEF00C3867A /* can-be-vegan-en.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -251,8 +263,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E97A8202C21FAEF00C3867A /* nonvegan.json in Resources */,
-				1E97A8212C21FAEF00C3867A /* canbevegan.json in Resources */,
+				1E97A8202C21FAEF00C3867A /* non-vegan-en.json in Resources */,
+				1E97A8212C21FAEF00C3867A /* can-be-vegan-en.json in Resources */,
+				1E8C983E2C233DF700CEFDB6 /* non-vegan-da.json in Resources */,
+				1E8C98402C23446700CEFDB6 /* non-vegan-es.json in Resources */,
 				1E80EA2F2C21B3EB00261AEC /* Preview Assets.xcassets in Resources */,
 				1E80EA2C2C21B3EB00261AEC /* Assets.xcassets in Resources */,
 			);
@@ -280,9 +294,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E80EA542C21C54500261AEC /* ScanProvider.swift in Sources */,
-				1E80EA2A2C21B3EA00261AEC /* ContentView.swift in Sources */,
+				1E80EA2A2C21B3EA00261AEC /* MainScanView.swift in Sources */,
 				1E80EA282C21B3EA00261AEC /* VeScanApp.swift in Sources */,
-				1E80EA522C21C52900261AEC /* ScanView.swift in Sources */,
+				1E80EA522C21C52900261AEC /* ScanViewWrapper.swift in Sources */,
+				1E8C983C2C232FCE00CEFDB6 /* ScanResultView.swift in Sources */,
+				1E8C983A2C232E2C00CEFDB6 /* Array+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
