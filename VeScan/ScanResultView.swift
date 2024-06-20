@@ -50,14 +50,12 @@ struct ParticleEmitterView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let view = UIView(frame: .zero)
         let emitterLayer = CAEmitterLayer()
-
         emitterLayer.emitterShape = .line
         emitterLayer.emitterPosition = CGPoint(x: (UIScreen.main.bounds.width / 2) + 30, y: 0)
         emitterLayer.emitterSize = CGSize(width: UIScreen.main.bounds.width - 30, height: 100)
 
         let emitterCell = CAEmitterCell()
         let image = UIImage(systemName: "sun.min")?.withTintColor(.white)
-
         emitterCell.contents = image?.cgImage
         emitterCell.birthRate = 10
         emitterCell.lifetime = 5
