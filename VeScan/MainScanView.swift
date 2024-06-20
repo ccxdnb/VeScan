@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainScanView.swift
 //  VeScan
 //
 //  Created by Joaquin Wilson on 18-06-24.
@@ -13,38 +13,18 @@ struct MainScanView: View {
 
     @State var rotation: CGFloat = 0.0
     @State var borderGradientColors: [Color] = [
-        Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.purple
+        Color.mint, Color.purplePrimary, Color.indigo, Color.mint
     ]
     @State var resultOverlayColor: Color = .clear
     @State var shouldDisplayOverlay: Bool = false
-    @State var startPointOverlay: UnitPoint = .center
-    @State var endPointOverlay: UnitPoint = .bottomTrailing
-    @State var startPositionArray: [UnitPoint] = [
-        .topLeading,
-        .top,
-        .topTrailing,
-        .trailing,
-        .bottomTrailing,
-        .bottom,
-        .bottomLeading,
-        .leading,
-    ]
-    @State var endPositionArray: [UnitPoint] = [
-        .bottomTrailing,
-        .bottom,
-        .bottomLeading,
-        .leading,
-        .topLeading,
-        .top,
-        .topTrailing,
-        .trailing,
-    ]
+
 
     // Size of the view
     let size: CGFloat = 230
     var body: some View {
         NavigationView{
             ZStack{
+                backgroundOverlay
                 VStack {
                     ScanViewWrapper(scanProvider: scanProvider)
                         .clipShape(.rect(cornerRadius: 30))
@@ -52,9 +32,9 @@ struct MainScanView: View {
                             RoundedRectangle(cornerRadius: 30)
                                 .stroke(
                                     LinearGradient( // main border gradient
-                                        gradient: Gradient(colors: [Color.mint, Color.purplePrimary, Color.indigo, Color.mint]),
-                                        startPoint: startPointOverlay,
-                                        endPoint: endPointOverlay), lineWidth: 3)
+                                        gradient: Gradient(colors: borderGradientColors),
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomLeading), lineWidth: 3)
                                 .blur(radius: 1)
                                 .mask(
                                     RoundedRectangle(cornerRadius: 30)
@@ -83,7 +63,6 @@ struct MainScanView: View {
                 }
                 .padding()
                 .containerRelativeFrame([.horizontal, .vertical])
-                .background(backgroundOverlay)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -100,50 +79,22 @@ struct MainScanView: View {
                         Spacer()
                     }
                 }
-            }
-        }
+            }.transition(.opacity)
+        }.navigationBarBackButtonHidden(true)
         .onAppear {
-            withAnimation(.spring(duration: 2).repeatForever()) {
+            withAnimation(.spring(duration:1.3).repeatForever()) {
                 //OVERLAY ANIMATION
-                startPositionArray = startPositionArray.rotateLeftByOne()
-                endPositionArray = endPositionArray.rotateLeftByOne()
-                startPointOverlay = startPositionArray.first!
-                endPointOverlay = endPositionArray.first!
+                borderGradientColors = borderGradientColors.shuffled()
 
             }
         }
     }
 
     var backgroundOverlay: some View {
-        RoundedRectangle(cornerRadius: size / 5)
-            .fill(LinearGradient(colors: [Color.purpleSecondary, Color.purpleDark, Color.background.opacity(0.3)],
-                                 startPoint: .top,
-                                 endPoint: .bottomTrailing)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: size / 5)
-                    .stroke(
-                        LinearGradient( // main border gradient
-                            gradient: Gradient(colors:
-                                [Color.green.opacity(shouldDisplayOverlay ? 1 : 0)]
-                            ),
-                            startPoint: .top,
-                            endPoint: .bottom), lineWidth: 5)
-                    .blur(radius: 3)
-                    .mask(
-                        RoundedRectangle(cornerRadius: size / 5)
-                            .fill(LinearGradient(
-                                gradient: Gradient(colors: [.black, .clear]),
-                                startPoint: .center,
-                                endPoint: .topLeading
-                            ))
-                            .fill(LinearGradient(
-                                gradient: Gradient(colors: [.black, .clear]),
-                                startPoint: .center,
-                                endPoint: .bottomTrailing
-                            ))
-                    )
-            ).ignoresSafeArea()
+        Image("mainscan-bg")
+            .resizable()
+            .scaledToFill()
+            .edgesIgnoringSafeArea(.all)
     }
 }
 

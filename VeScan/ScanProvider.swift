@@ -45,6 +45,10 @@ final class ScanProvider: NSObject, DataScannerViewControllerDelegate, Observabl
         case .text(let text):
             let detectedLanguage = detectedLanguage(for: text.transcript)
             self.scanResult = analyzeIngredientsIn(text.transcript, with: detectedLanguage)
+
+            print("----- LANGUAGE DETECTED: \(detectedLanguage)")
+            print("----- TEXT : \(text.transcript)")
+            print("----- SCAN RESULT : \(self.scanResult)")
         default:
             break
         }
@@ -52,14 +56,15 @@ final class ScanProvider: NSObject, DataScannerViewControllerDelegate, Observabl
 
     func analyzeIngredientsIn(_ text: String, with language: NLLanguage?) -> ScanResult {
         let nonVegan = getIngredients(language: language ?? .english)
-        for ingredient in text.split(separator: " ", omittingEmptySubsequences: true) {
+        let ingredients = text.split(separator: " ", omittingEmptySubsequences: true)
+
+        for ingredient in ingredients {
             if nonVegan.contains(String(ingredient).lowercased()) {
                 return .nonVegan
             } else {
                 return .vegan
             }
         }
-
         return .dunno
     }
 
@@ -86,7 +91,7 @@ final class ScanProvider: NSObject, DataScannerViewControllerDelegate, Observabl
         case .spanish:
             fileName = "non-vegan-es"
         default:
-            break
+            fileName = "non-vegan-en"
         }
 
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
