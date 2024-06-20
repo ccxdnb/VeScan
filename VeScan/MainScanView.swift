@@ -50,7 +50,6 @@ struct MainScanView: View {
                                         ))
                                 )
                         )
-                        .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                         .clipShape(.rect(cornerRadius: 30))
                         .frame(height: 300)
                     Text("Look for ingredients in the package")
@@ -64,30 +63,31 @@ struct MainScanView: View {
                 .padding()
                 .containerRelativeFrame([.horizontal, .vertical])
             }
+            .onAppear {
+                withAnimation(.spring(duration:1).repeatForever()) {
+                    //OVERLAY ANIMATION
+                    borderGradientColors = borderGradientColors.shuffled()
+
+                }
+            }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
                         Spacer()
-                        Image(systemName: "leaf.fill") // Replace with your logo image
+                        Image(systemName: "leaf.fill")
                             .resizable()
                             .frame(width: 40, height: 40)
 
                         Text("VeScan")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            
                         Spacer()
                     }
                 }
             }.transition(.opacity)
         }.navigationBarBackButtonHidden(true)
-        .onAppear {
-            withAnimation(.spring(duration:1.3).repeatForever()) {
-                //OVERLAY ANIMATION
-                borderGradientColors = borderGradientColors.shuffled()
-
-            }
-        }
     }
 
     var backgroundOverlay: some View {

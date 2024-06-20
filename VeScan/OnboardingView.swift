@@ -13,6 +13,8 @@ struct OnboardingView: View {
 
     @State private var isShowingDetailView = false
 
+    var onboardingCompleted: () -> Void = {}
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -20,6 +22,8 @@ struct OnboardingView: View {
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
+
+
                 VStack(spacing: 15) {
                     if isVisible {
                         Spacer()
@@ -80,6 +84,7 @@ struct OnboardingView: View {
 
                         if !isVisible {
                             isShowingDetailView = true
+                            onboardingCompleted()
                         }
 
                     } label: {
