@@ -1,4 +1,4 @@
-# Doggy App
+# VeScan App
 
 ## About
 This is a simple exercise with VisionKit and Natural Language and the main purpose is to determinate wether a product is vegan or not based on their ingredients. Always wanted one for myself.
