@@ -28,11 +28,11 @@ final class ScanProvider: NSObject, DataScannerViewControllerDelegate, Observabl
         func description () -> String {
             switch self {
             case .vegan:
-                return "Vegan!"
+                return "Vegan :D"
             case .nonVegan:
-                return "Not Vegan"
+                return "Not Vegan ):"
             case .dunno:
-                return " "
+                return "Thinking!"
             }
         }
     }

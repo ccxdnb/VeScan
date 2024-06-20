@@ -23,6 +23,7 @@
 		1E8C98422C244E1400CEFDB6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C98412C244E1400CEFDB6 /* OnboardingView.swift */; };
 		1E8C98442C24601000CEFDB6 /* TransparentBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C98432C24601000CEFDB6 /* TransparentBlurView.swift */; };
 		1E8C98462C24602D00CEFDB6 /* BouncingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C98452C24602D00CEFDB6 /* BouncingTextView.swift */; };
+		1E8C98482C24A1A800CEFDB6 /* GradientShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8C98472C24A1A800CEFDB6 /* GradientShape.swift */; };
 		1E97A8202C21FAEF00C3867A /* non-vegan-en.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E97A81E2C21FAEF00C3867A /* non-vegan-en.json */; };
 		1E97A8212C21FAEF00C3867A /* can-be-vegan-en.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E97A81F2C21FAEF00C3867A /* can-be-vegan-en.json */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		1E8C98412C244E1400CEFDB6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		1E8C98432C24601000CEFDB6 /* TransparentBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlurView.swift; sourceTree = "<group>"; };
 		1E8C98452C24602D00CEFDB6 /* BouncingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncingTextView.swift; sourceTree = "<group>"; };
+		1E8C98472C24A1A800CEFDB6 /* GradientShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientShape.swift; sourceTree = "<group>"; };
 		1E97A81E2C21FAEF00C3867A /* non-vegan-en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "non-vegan-en.json"; sourceTree = "<group>"; };
 		1E97A81F2C21FAEF00C3867A /* can-be-vegan-en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "can-be-vegan-en.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 				1E8C98412C244E1400CEFDB6 /* OnboardingView.swift */,
 				1E80EA292C21B3EA00261AEC /* MainScanView.swift */,
 				1E8C983B2C232FCE00CEFDB6 /* ScanResultView.swift */,
+				1E8C98472C24A1A800CEFDB6 /* GradientShape.swift */,
 				1E80EA512C21C52900261AEC /* ScanViewWrapper.swift */,
 				1E80EA532C21C54500261AEC /* ScanProvider.swift */,
 				1E8C98392C232E2C00CEFDB6 /* Array+Utils.swift */,
@@ -307,6 +310,7 @@
 				1E80EA2A2C21B3EA00261AEC /* MainScanView.swift in Sources */,
 				1E80EA282C21B3EA00261AEC /* VeScanApp.swift in Sources */,
 				1E80EA522C21C52900261AEC /* ScanViewWrapper.swift in Sources */,
+				1E8C98482C24A1A800CEFDB6 /* GradientShape.swift in Sources */,
 				1E8C983C2C232FCE00CEFDB6 /* ScanResultView.swift in Sources */,
 				1E8C983A2C232E2C00CEFDB6 /* Array+Utils.swift in Sources */,
 				1E8C98442C24601000CEFDB6 /* TransparentBlurView.swift in Sources */,
@@ -478,7 +482,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Hello :D";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -511,7 +515,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Hello :D";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

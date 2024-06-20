@@ -23,7 +23,6 @@ struct OnboardingView: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
 
-
                 VStack(spacing: 15) {
                     if isVisible {
                         Spacer()
@@ -69,11 +68,9 @@ struct OnboardingView: View {
                         }.clipShape(RoundedRectangle(cornerRadius: 25.0))
 
                         Spacer()
-
                     }
 
                     NavigationLink(destination: MainScanView().transition(.opacity), isActive: $isShowingDetailView) { EmptyView() }
-
                     Button {
                         withAnimation(.easeInOut.delay(isVisible ? 0.5 : 0)) {
                             isVisible.toggle()
@@ -95,6 +92,7 @@ struct OnboardingView: View {
                     .tint(Color.white)
                     .controlSize(.extraLarge)
                     .opacity(0.8)
+                    
                 }.padding(.horizontal, 30)
             }
         }

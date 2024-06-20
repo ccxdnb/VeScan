@@ -9,71 +9,78 @@ import SwiftUI
 
 struct ScanResultView: View {
     @StateObject var scanProvider: ScanProvider
-
     @State var resultIconName: String = ""
-
     @State var animate: Bool = false
 
     var body: some View {
         VStack {
-//            switch scanProvider.scanResult {
-//            case .vegan:
-//                GalaxyView()
-//            case .nonVegan:
-//                Text("")
-//
-//            default:
-//                GalaxyView()
-//            }
-            ParticleEmitterView()
+            ZStack {
+                ZStack {
+                    Circle()
+                        .frame(width: 200, height: 200)
+                        .foregroundColor(Color.background.opacity(0.3))
+                }
 
+                Circle()
+                    .frame(width: 200, height: 200)
+                    .foregroundColor(Color.white.opacity(0.8))
+                    .scaleEffect(0.3)
+                    .blur(radius: 10)
+
+                GradientShape(selectedShape: .first, colors: [.green, .clear])
+                    .rotation3DEffect(
+                        .degrees(75),
+                        axis: (x: 1.0, y: 0, z: animate ? -35 : 45)
+                    )
+                    .blendMode(.multiply)
+
+                GradientShape(selectedShape: .first, colors: [.pink, .clear])
+                    .rotationEffect(.degrees(animate ? 0 : 360))
+                    .blendMode(.multiply)
+
+                GradientShape(selectedShape: .first, colors: [.mint, .clear])
+                    .rotationEffect(.degrees(!animate ? 0 : 360))
+                    .blendMode(.multiply)
+
+
+                GradientShape(selectedShape: .third, colors: [.green, .clear])
+                    .rotation3DEffect(
+                        .degrees(75),
+                        axis: (x: 1.0, y: 0, z: animate ? -5 : 15)
+                    )
+                    .blendMode(.colorBurn)
+
+
+                GradientShape(selectedShape: .second, colors: [.indigo, .clear])
+                    .rotation3DEffect(
+                        .degrees(75),
+                        axis: (x: 1.0, y: 0, z: animate ? -10 : 35)
+                    )
+                    .blendMode(.multiply)
+
+            }.frame(maxHeight: 400)
+                .blur(radius: 15)
 
             Text(scanProvider.scanResult.description())
                 .foregroundColor(.white)
                 .font(.largeTitle)
                 .fontWeight(.bold)
+                .padding(.horizontal, 15)
+                    .padding(.top, 25)
+                    .padding(.bottom, 25)
+                .background{
+                    TransparentBlurView(removeAllFilters: true)
+                        .blur(radius: 9)
+                        .background(.white.opacity(0.15))
+                }.clipShape(RoundedRectangle(cornerRadius: 25.0))
 
-        }.padding(.horizontal, 15)
-            .padding(.top, 25)
-            .padding(.bottom, 25)
-            .background{
-                TransparentBlurView(removeAllFilters: true)
-                    .blur(radius: 9)
-                    .background(.white.opacity(0.15))
-            }.clipShape(RoundedRectangle(cornerRadius: 25.0))
+        }
+            .onAppear {
+                withAnimation(.easeInOut(duration: 5).repeatForever()) {
+                    animate.toggle()
+                }
+            }
     }
-}
-
-    import UIKit
-
-struct ParticleEmitterView: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView(frame: .zero)
-        let emitterLayer = CAEmitterLayer()
-        emitterLayer.emitterShape = .line
-        emitterLayer.emitterPosition = CGPoint(x: (UIScreen.main.bounds.width / 2) + 30, y: 0)
-        emitterLayer.emitterSize = CGSize(width: UIScreen.main.bounds.width - 30, height: 100)
-
-        let emitterCell = CAEmitterCell()
-        let image = UIImage(systemName: "sun.min")?.withTintColor(.white)
-        emitterCell.contents = image?.cgImage
-        emitterCell.birthRate = 10
-        emitterCell.lifetime = 5
-        emitterCell.velocity = -100
-        emitterCell.velocityRange = 50
-        emitterCell.yAcceleration = 30
-        emitterCell.scale = 0.05
-        emitterCell.scaleRange = 0.3
-        emitterCell.color = UIColor.red.cgColor
-        emitterCell.alphaSpeed = -0.7
-
-        emitterLayer.emitterCells = [emitterCell]
-
-        view.layer.addSublayer(emitterLayer)
-        return view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
 #Preview {

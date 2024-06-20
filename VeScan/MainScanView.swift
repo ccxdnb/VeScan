@@ -26,48 +26,49 @@ struct MainScanView: View {
             ZStack{
                 backgroundOverlay
                 VStack {
-                    ScanViewWrapper(scanProvider: scanProvider)
-                        .clipShape(.rect(cornerRadius: 30))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 30)
-                                .stroke(
-                                    LinearGradient( // main border gradient
-                                        gradient: Gradient(colors: borderGradientColors),
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomLeading), lineWidth: 3)
-                                .blur(radius: 1)
-                                .mask(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .fill(LinearGradient(
-                                            gradient: Gradient(colors: [.white, .clear]),
-                                            startPoint: .center,
-                                            endPoint: .topLeading
-                                        ))
-                                        .fill(LinearGradient(
-                                            gradient: Gradient(colors: [.white, .clear]),
-                                            startPoint: .center,
-                                            endPoint: .bottomTrailing
-                                        ))
-                                )
-                        )
-                        .clipShape(.rect(cornerRadius: 30))
-                        .frame(height: 300)
-                    Text("Look for ingredients in the package")
-
+                    VStack{
+                        ScanViewWrapper(scanProvider: scanProvider)
+                            .clipShape(.rect(cornerRadius: 30))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(
+                                        LinearGradient( // main border gradient
+                                            gradient: Gradient(colors: borderGradientColors),
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomLeading), lineWidth: 3)
+                                    .blur(radius: 1)
+                                    .mask(
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .fill(LinearGradient(
+                                                gradient: Gradient(colors: [.white, .clear]),
+                                                startPoint: .center,
+                                                endPoint: .topLeading
+                                            ))
+                                            .fill(LinearGradient(
+                                                gradient: Gradient(colors: [.white, .clear]),
+                                                startPoint: .center,
+                                                endPoint: .bottomTrailing
+                                            ))
+                                    )
+                            )
+                            .clipShape(.rect(cornerRadius: 30))
+                            .frame(height: 300)
+                        Text("Look for ingredients in the package")
+                    }.transaction { transaction in
+                        transaction.animation = nil
+                    }
+                    Spacer()
                     VStack {
+                        Spacer()
                         ScanResultView(scanProvider: scanProvider)
                     }
-
-                    Spacer()
                 }
                 .padding()
                 .containerRelativeFrame([.horizontal, .vertical])
             }
             .onAppear {
                 withAnimation(.spring(duration:1).repeatForever()) {
-                    //OVERLAY ANIMATION
                     borderGradientColors = borderGradientColors.shuffled()
-
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
