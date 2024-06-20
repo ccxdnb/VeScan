@@ -95,7 +95,6 @@ struct ThirdShape: Shape {
     }
 }
 
-
 #Preview {
     GradientShape()
 }
