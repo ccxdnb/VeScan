@@ -6,6 +6,12 @@ This is a simple exercise with VisionKit and Natural Language and the main purpo
 ## Features
 - Scanner:
     - Place a product ingredients within the camera frame to extract them and analyze them.
+ 
+## TODO:
+- Scanner:
+    - Implement Vision AI Model for Q&A about every product.
+- Architecture:
+    - Implement MVVM to decouple logic from SwiftUI Views
 
 ## Installation
 Download and run the project, no need of aditional comands or dependencies.
